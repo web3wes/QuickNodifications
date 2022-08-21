@@ -1,8 +1,8 @@
 {
-  "name": "ondeck",
+  "name": "vip_notifier",
   "version": "1.0.0",
-  "description": "On deck slack bot. Used to notify active users.",
-  "main": "onDeck.js",
+  "description": "Slack app to notify vip users",
+  "main": "VIPNotifier.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
