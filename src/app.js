@@ -33,6 +33,5 @@ const app = new App({
 // Handle the Lambda function event
 module.exports.handler = async (event, context, callback) => {
   const handler = await awsLambdaReceiver.start();
-  console.log(event, context, callback)
   return handler(event, context, callback);
 }
