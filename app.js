@@ -1,4 +1,15 @@
-const { App, LogLevel, AwsLambdaReceiver } = require('@slack/bolt');
+require('dotenv').config();
+const express = require("express");
+const app = express();
+
+
+const { App, LogLevel } = require('@slack/bolt');
+
+// const { Sequelize } = require('sequelize');
+
+// const sequelize = new Sequelize(process.env.DB_URI);
+
+const { registerListeners } = require('./listeners');
 
 let logLevel;
 switch (process.env.LOG_LEVEL) {
@@ -18,80 +29,82 @@ switch (process.env.LOG_LEVEL) {
     logLevel = LogLevel.INFO;
 }
 
-const awsLambdaReceiver = new AwsLambdaReceiver({
-  signingSecret: process.env.SLACK_SIGNING_SECRET,
+// Initializes your app with your bot token and signing secret
+const slackbot = new App({
+   token: "process.env.SLACK_BOT_TOKEN",
+    socketMode: true,
+    appToken: "process.env.SLACK_APP_TOKEN",
+    logLevel,
 });
+registerListeners(slackbot);
 
-const app = new App({
-    token: process.env.SLACK_BOT_TOKEN,
-    receiver: awsLambdaReceiver,
-    logLevel
-});
-
-
-// Handle the Lambda function event
-module.exports.handler = async (event, context, callback) => {
-  const handler = await awsLambdaReceiver.start();
-  return handler(event, context, callback);
-}
-
-app.command('/note', async ({ ack, body, client, logger }) => {
-  // Acknowledge the command request
-  await ack();
-
+(async () => {
   try {
-    // Call views.open with the built-in client
-    const result = await client.views.open({
-      // Pass a valid trigger_id within 3 seconds of receiving it
-      trigger_id: body.trigger_id,
-      // View payload
-      view: {
-        type: 'modal',
-        // View identifier
-        callback_id: 'view_1',
-        title: {
-          type: 'plain_text',
-          text: 'Modal title'
-        },
-        blocks: [
-          {
-            type: 'section',
-            text: {
-              type: 'mrkdwn',
-              text: 'Welcome to a modal with _blocks_'
-            },
-            accessory: {
-              type: 'button',
-              text: {
-                type: 'plain_text',
-                text: 'Click me!'
-              },
-              action_id: 'button_abc'
-            }
-          },
-          {
-            type: 'input',
-            block_id: 'input_c',
-            label: {
-              type: 'plain_text',
-              text: 'What are your hopes and dreams?'
-            },
-            element: {
-              type: 'plain_text_input',
-              action_id: 'dreamy_input',
-              multiline: true
-            }
-          }
-        ],
-        submit: {
-          type: 'plain_text',
-          text: 'Submit'
-        }
-      }
-    });
-    logger.info(result);
+    // await sequelize.authenticate();
+    // await sequelize.sync({ force: true });
+    // eslint-disable-next-line no-console
+    console.log('All models were synchronized successfully.');
+    // eslint-disable-next-line no-console
+    console.log('Connection has been established successfully.');
+    // Start your app
+    await slackbot.start();
+
+    // slackbot.shortcut('global_new_task', async ({ shortcut, ack, client, logger }) => {
+
+    //   try {
+    //     // Acknowledge shortcut request
+    //     await ack();
+    
+    //     // Call the views.open method using one of the built-in WebClients
+    //     const result = await client.views.open({
+    //       trigger_id: shortcut.trigger_id,
+    //       view: {
+    //         type: "modal",
+    //         title: {
+    //           type: "plain_text",
+    //           text: "My App"
+    //         },
+    //         close: {
+    //           type: "plain_text",
+    //           text: "Close"
+    //         },
+    //         blocks: [
+    //           {
+    //             type: "section",
+    //             text: {
+    //               type: "mrkdwn",
+    //               text: "Hello Dylan! If you  are seeing this, it's because you have chosen the red pill. There is no reverting beyond this point. Onward and forward."
+    //             }
+    //           },
+    //           {
+    //             type: "context",
+    //             elements: [
+    //               {
+    //                 type: "mrkdwn",
+    //                 text: "Psssst this modal was designed using <https://api.slack.com/tools/block-kit-builder|*Block Kit Builder*>"
+    //               }
+    //             ]
+    //           }
+    //         ]
+    //       }
+    //     });
+    
+    //     logger.info(result);
+    //   }
+    //   catch (error) {
+    //     logger.error(error);
+    //   }
+    // });
+
+    // eslint-disable-next-line no-console
+    console.log('⚡️ Tasks app is running!');
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error('Unable to start App', error);
+    process.exit(1);
   }
-  catch (error) {
-    logger.error(error);
-  }
+})();
+
+app.listen(process.env.PORT || 3001, '0.0.0.0', () => {
+  console.log("Server is running.");
 });
