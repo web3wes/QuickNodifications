@@ -21,4 +21,8 @@ let ethChannelNames = [];
 AggregateNamesAndIds(ETH, ethChannelNames, ethChannelIds);
 console.log(ethChannelNames, ethChannelIds);
 
-module.exports = ethChannelNames, ethChannelIds, ETH;
+module.exports = {
+  ethChannelNames, 
+  ethChannelIds, 
+  ETH
+};
