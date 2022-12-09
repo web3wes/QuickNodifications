@@ -1,4 +1,4 @@
-require('dotenv').config();
+
 const { App, LogLevel, AwsLambdaReceiver } = require('@slack/bolt');
 
 let logLevel;
