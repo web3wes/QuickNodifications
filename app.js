@@ -1,4 +1,3 @@
-
 const { App, LogLevel, AwsLambdaReceiver } = require('@slack/bolt');
 
 let logLevel;
