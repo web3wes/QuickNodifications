@@ -1,6 +1,15 @@
 display_information:
   name: VIPNotifier
 features:
+  app_home:
+    home_tab_enabled: true
+    messages_tab_enabled: true
+    messages_tab_read_only_enabled: true
+  shortcuts:
+    - name: Create a sev0 notification
+      type: global
+      callback_id: global_new_notification
+      description: Quickly notify priority customers
   bot_user:
     display_name: VIPNotifier
     always_online: false

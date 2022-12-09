@@ -1,6 +1,6 @@
 const { Modal, Blocks, Elements, Bits } = require("slack-block-builder");
 
-const newModal = (currentUser) => {
+module.exports = () => {
   return Modal({
     title: "Notify VIPs",
     submit: "Send",
@@ -28,23 +28,86 @@ const newModal = (currentUser) => {
             Bits.Option({ text: "ONE", value: "12" }),
             Bits.Option({ text: "OP", value: "13" }),
             Bits.Option({ text: "PALM", value: "14" }),
-            Bits.Option({ text: "LUNA", value: "15" })
-          )
+            Bits.Option({ text: "LUNA", value: "15" }),
+          ),
       ),
       Blocks.Input({ label: "Send as:", blockId: "userSelect" }).element(
         Elements.UserSelect({
           actionId: "sender",
-        }).initialUser(currentUser)
+        }).initialUser(currentUser),
       ),
       Blocks.Input({ label: "Message", blockId: "message" }).element(
         Elements.TextInput({
           placeholder:
             "Create the notification you would like to send to our Priority channels",
           multiline: "true",
-        }).actionId("notification")
-      )
+          actionId: "notification"
+        }),
+      ),
     )
     .buildToJSON();
 };
 
-module.exports = newModal;
+
+// {
+// 	"type": "modal",
+// 	"title": {
+// 		"type": "plain_text",
+// 		"text": "QuickNodifications",
+// 		"emoji": true
+// 	},
+// 	"submit": {
+// 		"type": "plain_text",
+// 		"text": "Submit",
+// 		"emoji": true
+// 	},
+// 	"close": {
+// 		"type": "plain_text",
+// 		"text": "Cancel",
+// 		"emoji": true
+// 	},
+// 	"blocks": [
+// 		{
+// 			"type": "section",
+// 			"text": {
+// 				"type": "mrkdwn",
+// 				"text": "Select Network"
+// 			},
+// 			"accessory": {
+// 				"type": "static_select",
+// 				"placeholder": {
+// 					"type": "plain_text",
+// 					"text": "——",
+// 					"emoji": true
+// 				},
+// 				"options": [
+// 					{
+// 						"text": {
+// 							"type": "plain_text",
+// 							"text": "Binance Smart Chain",
+// 							"emoji": true
+// 						},
+// 						"value": "BSC"
+// 					},
+// 					{
+// 						"text": {
+// 							"type": "plain_text",
+// 							"text": "*this is plain_text text*",
+// 							"emoji": true
+// 						},
+// 						"value": "value-1"
+// 					},
+// 					{
+// 						"text": {
+// 							"type": "plain_text",
+// 							"text": "*this is plain_text text*",
+// 							"emoji": true
+// 						},
+// 						"value": "value-2"
+// 					}
+// 				],
+// 				"action_id": "static_select-action"
+// 			}
+// 		}
+// 	]
+// }
