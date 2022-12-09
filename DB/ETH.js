@@ -6,6 +6,10 @@ const etheriumMainnet = [
     id: "123",
   },
   {
+    name: "1inch_TELEGRAM",
+    id: "345",
+  },
+  {
     name: "#priority-amberdata-quicknode",
     id: "234",
   },
@@ -22,12 +26,16 @@ const etheriumMainnet = [
     id: "345",
   },
   {
-    name: "#priority-coinfund-quicknode",
-    id: "234",
+    name: "coinbase_NOT_IN_QN_WORKSPACE",
+    id: "345",
   },
   {
-    name: "#priority-cryptoquant_quicknode",
+    name: "#priority-coindcx-quicknode",
     id: "345",
+  },
+  {
+    name: "#priority-coinfund-quicknode",
+    id: "234",
   },
   {
     name: "#priority-dune-quicknode",
@@ -82,6 +90,10 @@ const etheriumMainnet = [
     id: "234",
   },
   {
+    name: "socket_TELEGRAM",
+    id: "345",
+  },
+  {
     name: "#priority-superform-quicknode",
     id: "345",
   },
@@ -111,7 +123,9 @@ let ethChannelIds = [];
 let ethChannelNames = [];
 
 AggregateNamesAndIds(etheriumMainnet, ethChannelNames, ethChannelIds);
+
 console.log(ethChannelNames, ethChannelIds);
+console.log(`Number of VIPs on eth-mainnet: ${etheriumMainnet.length}`)
 
 module.exports = {
   ethChannelNames, 
