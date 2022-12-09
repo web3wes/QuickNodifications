@@ -8,8 +8,8 @@
       "name": "aws",
       "runtime": "nodejs14.x",
       "environment": {
-        "SLACK_SIGNING_SECRET": "${./.env:SLACK_SIGNING_SECRET}",
-        "SLACK_BOT_TOKEN": "${./.env:SLACK_BOT_TOKEN}"
+        "SLACK_SIGNING_SECRET": "${.env:SLACK_SIGNING_SECRET}",
+        "SLACK_BOT_TOKEN": "${.env:SLACK_BOT_TOKEN}"
       },
       "stage": "dev",
       "region": "us-east-1",
@@ -177,7 +177,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/serverless-bolt-js/dev/1670554625687-2022-12-09T02:57:05.687Z/serverless-bolt-js.zip"
+                "S3Key": "serverless/serverless-bolt-js/dev/1670558311378-2022-12-09T03:58:31.378Z/serverless-bolt-js.zip"
               },
               "Handler": "app.handler",
               "Runtime": "nodejs14.x",
@@ -186,8 +186,8 @@
               "Timeout": 6,
               "Environment": {
                 "Variables": {
-                  "SLACK_SIGNING_SECRET": "${./.env:SLACK_SIGNING_SECRET}",
-                  "SLACK_BOT_TOKEN": "${./.env:SLACK_BOT_TOKEN}"
+                  "SLACK_SIGNING_SECRET": "${.env:SLACK_SIGNING_SECRET}",
+                  "SLACK_BOT_TOKEN": "${.env:SLACK_BOT_TOKEN}"
                 }
               },
               "Role": {
@@ -201,14 +201,14 @@
               "SlackLogGroup"
             ]
           },
-          "SlackLambdaVersionVb6l1vbzdgu2vOEq2jL71oRJ6MlJiVcUFvOoRJtSk0s": {
+          "SlackLambdaVersionbXg1knhCASBcEKWJbvspTgg3a5hl9jKVE7PhnNyZvM": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "SlackLambdaFunction"
               },
-              "CodeSha256": "EKOLJRWCyK7Hk7COKvFOBPQGxe7vFK0AuojlhqhBJXM="
+              "CodeSha256": "Jgs63pFY1ri/yE5ZNarxtM9PZHiLswdSVHd89AbovUA="
             }
           },
           "ApiGatewayRestApi": {
@@ -296,7 +296,7 @@
               "SlackLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1670554625203": {
+          "ApiGatewayDeployment1670558299073": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -358,7 +358,7 @@
           "SlackLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "SlackLambdaVersionVb6l1vbzdgu2vOEq2jL71oRJ6MlJiVcUFvOoRJtSk0s"
+              "Ref": "SlackLambdaVersionbXg1knhCASBcEKWJbvspTgg3a5hl9jKVE7PhnNyZvM"
             },
             "Export": {
               "Name": "sls-serverless-bolt-js-dev-SlackLambdaFunctionQualifiedArn"
@@ -498,7 +498,7 @@
         "timeout": 6,
         "runtime": "nodejs14.x",
         "vpc": {},
-        "versionLogicalId": "SlackLambdaVersionVb6l1vbzdgu2vOEq2jL71oRJ6MlJiVcUFvOoRJtSk0s"
+        "versionLogicalId": "SlackLambdaVersionbXg1knhCASBcEKWJbvspTgg3a5hl9jKVE7PhnNyZvM"
       }
     },
     "configValidationMode": "warn",
@@ -518,10 +518,10 @@
     },
     "layers": {},
     "isDashboardMonitoringPreconfigured": false,
-    "artifact": "/Users/dylanharville/Documents/slackProjects/VIPNotifier/src/.serverless/serverless-bolt-js.zip"
+    "artifact": "/Users/dylanharville/Documents/slackProjects/VIPNotifier/.serverless/serverless-bolt-js.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/serverless-bolt-js/dev/1670554625687-2022-12-09T02:57:05.687Z",
+    "artifactDirectoryName": "serverless/serverless-bolt-js/dev/1670558311378-2022-12-09T03:58:31.378Z",
     "artifact": "serverless-bolt-js.zip"
   }
 }
