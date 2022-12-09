@@ -66,7 +66,7 @@ const etheriumMainnet = [
     id: "234",
   },
   {
-    name: "	#priority-kyber-quicknode",
+    name: "#priority-kyber-quicknode",
     id: "345",
   },
   {
