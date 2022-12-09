@@ -4,7 +4,8 @@
   "description": "Slack app to notify vip users",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serverless": "serverless offline --noPrependStageInUrl"
   },
   "author": "DH",
   "license": "ISC",
@@ -14,5 +15,8 @@
     "dotenv": "^16.0.1",
     "slack-block-builder": "^2.6.0",
     "vercel": "^28.8.0"
+  },
+  "devDependencies": {
+    "serverless-offline": "^12.0.1"
   }
 }

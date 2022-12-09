@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { App, LogLevel } = require('@slack/bolt');
+const { App, LogLevel, AwsLambdaReceiver } = require('@slack/bolt');
 
 let logLevel;
 switch (process.env.LOG_LEVEL) {
@@ -19,16 +19,19 @@ switch (process.env.LOG_LEVEL) {
     logLevel = LogLevel.INFO;
 }
 
+const awsLambdaReceiver = new AwsLambdaReceiver({
+  signingSecret: process.env.SLACK_SIGNING_SECRET,
+});
+
 const app = new App({
     token: process.env.SLACK_BOT_TOKEN,
-    signingSecret: process.env.SLACK_SIGNING_SECRET,
-    appToken: process.env.SLACK_APP_TOKEN,
+    receiver: awsLambdaReceiver,
     logLevel
 });
 
 
-(async () => {
-    await app.start(process.env.PORT || 3000);
-
-    console.log('VIPNotifier is running');
-})();
+// Handle the Lambda function event
+module.exports.handler = async (event, context, callback) => {
+  const handler = await awsLambdaReceiver.start();
+  return handler(event, context, callback);
+}
