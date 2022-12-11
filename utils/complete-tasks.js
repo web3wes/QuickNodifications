@@ -1,6 +1,6 @@
 // const { Op } = require('sequelize');
 
-const { Task } = require('../models');
+
 
 module.exports = async (taskIDs, slackUserID, client) => {
   Task.update({ status: 'CLOSED' }, { where: { id: taskIDs } });
