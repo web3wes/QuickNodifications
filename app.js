@@ -28,9 +28,9 @@ switch (process.env.LOG_LEVEL) {
 
 // Initializes your app with your bot token and signing secret
 const slackbot = new App({
-   token: "xoxb-209991238290-4462241183906-6aQHVWVU2OR57nB2ECqjRlxe",
+   token: "process.env.BOT_TOKEN",
     socketMode: true,
-    appToken: "xapp-1-A04E9TPDXJ4-4487796119142-09a8cc1bbf33b88084fbf253f53742dfeefb12b74462aa7407a9d4227c3897b7",
+    appToken: "process.env.APP_TOKEN",
     logLevel,
 });
 
