@@ -1,4 +1,4 @@
-const { Task } = require('../../models');
+
 const { reloadAppHome } = require('../../utilities');
 
 const reopenTaskCallback = async ({ ack, action, client, body }) => {

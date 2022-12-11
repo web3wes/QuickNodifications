@@ -5,9 +5,6 @@ const app = express();
 
 const { App, LogLevel } = require('@slack/bolt');
 
-// const { Sequelize } = require('sequelize');
-
-// const sequelize = new Sequelize(process.env.DB_URI);
 
 const { registerListeners } = require('./listeners');
 
@@ -31,71 +28,23 @@ switch (process.env.LOG_LEVEL) {
 
 // Initializes your app with your bot token and signing secret
 const slackbot = new App({
-   token: "process.env.SLACK_BOT_TOKEN",
+   token: "xoxb-209991238290-4462241183906-6aQHVWVU2OR57nB2ECqjRlxe",
     socketMode: true,
-    appToken: "process.env.SLACK_APP_TOKEN",
+    appToken: "xapp-1-A04E9TPDXJ4-4487796119142-09a8cc1bbf33b88084fbf253f53742dfeefb12b74462aa7407a9d4227c3897b7",
     logLevel,
 });
+
+// Listens for slackbot events
 registerListeners(slackbot);
 
 (async () => {
   try {
-    // await sequelize.authenticate();
-    // await sequelize.sync({ force: true });
-    // eslint-disable-next-line no-console
     console.log('All models were synchronized successfully.');
     // eslint-disable-next-line no-console
     console.log('Connection has been established successfully.');
     // Start your app
     await slackbot.start();
-
-    // slackbot.shortcut('global_new_task', async ({ shortcut, ack, client, logger }) => {
-
-    //   try {
-    //     // Acknowledge shortcut request
-    //     await ack();
     
-    //     // Call the views.open method using one of the built-in WebClients
-    //     const result = await client.views.open({
-    //       trigger_id: shortcut.trigger_id,
-    //       view: {
-    //         type: "modal",
-    //         title: {
-    //           type: "plain_text",
-    //           text: "My App"
-    //         },
-    //         close: {
-    //           type: "plain_text",
-    //           text: "Close"
-    //         },
-    //         blocks: [
-    //           {
-    //             type: "section",
-    //             text: {
-    //               type: "mrkdwn",
-    //               text: "Hello Dylan! If you  are seeing this, it's because you have chosen the red pill. There is no reverting beyond this point. Onward and forward."
-    //             }
-    //           },
-    //           {
-    //             type: "context",
-    //             elements: [
-    //               {
-    //                 type: "mrkdwn",
-    //                 text: "Psssst this modal was designed using <https://api.slack.com/tools/block-kit-builder|*Block Kit Builder*>"
-    //               }
-    //             ]
-    //           }
-    //         ]
-    //       }
-    //     });
-    
-    //     logger.info(result);
-    //   }
-    //   catch (error) {
-    //     logger.error(error);
-    //   }
-    // });
-
     // eslint-disable-next-line no-console
     console.log('⚡️ Tasks app is running!');
   } catch (error) {

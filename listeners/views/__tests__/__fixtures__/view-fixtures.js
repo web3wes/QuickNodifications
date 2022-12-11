@@ -56,12 +56,47 @@ const viewPayloadBase = (
         },
       },
       {
-        type: 'input',
-        block_id: 'taskDueDate',
-        label: { type: 'plain_text', text: 'Due date', emoji: true },
-        optional: true,
-        dispatch_action: false,
-        element: { type: 'datepicker', action_id: 'taskDueDate' },
+        type: 'section',
+        block_id: 'section678',
+        text: {
+          type: 'mrkdwn',
+          text: 'Pick items from the list'
+        },
+        accessory: {
+          action_id: 'text1234',
+          type: 'multi_static_select',
+          placeholder: {
+            type: 'plain_text',
+            text: 'Select items'
+          },
+          options: [
+            {
+              text: {
+                type: 'plain_text',
+                text: '*this is plain_text text*'
+              },
+              value: 'value-0'
+            },
+            {
+              text: {
+                type: 'plain_text',
+                text: '*this is plain_text text*'
+              },
+              value: 'value-1'
+            },
+            {
+              text: {
+                type: 'plain_text',
+                text: '*this is plain_text text*'
+              },
+              value: 'value-2'
+            }
+          ]
+        },
+        element: {
+          type: 'multi_static_select',
+          action_id: 'text1234',
+        },
       },
       {
         type: 'input',
@@ -88,9 +123,14 @@ const viewPayloadBase = (
             selected_user: selectedUser,
           },
         },
-        taskDueDate: {
-          taskDueDate: { type: 'datepicker', selected_date: selectedDate },
+        section678: {
+          section678: {
+            type: 'multi_static_select',
+            // options: [],
+          },
         },
+       
+        
         taskDueTime: {
           taskDueTime: { type: 'timepicker', selected_time: selectedTime },
         },
@@ -113,6 +153,16 @@ const viewPayloadBase = (
   is_enterprise_install: false,
   enterprise: null,
 });
+
+
+     // {
+      //   type: 'input',
+      //   block_id: 'taskDueDate',
+      //   label: { type: 'plain_text', text: 'Due date', emoji: true },
+      //   optional: true,
+      //   dispatch_action: false,
+      //   element: { type: 'datepicker', action_id: 'taskDueDate' },
+      // },
 
 const validDate = DateTime.now().plus({ months: 1, days: 1 }).toISODate();
 

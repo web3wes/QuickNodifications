@@ -1,14 +1,30 @@
 {
-  "name": "vip_notifier",
+  "name": "slackapi-tasks-app",
   "version": "1.0.0",
-  "description": "Slack app to notify vip users",
+  "description": "Tasks App is a sample Task Management app built on the Slack Platform.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "serverless": "serverless offline --noPrependStageInUrl"
+    "test": "jest --no-cache",
+    "lint": "eslint . --ext .js",
+      "start": "node app.js"
+   
   },
-  "author": "DH",
-  "license": "ISC",
+  "jest": {
+    "collectCoverage": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/slackapi/tasks-app.git"
+  },
+  "keywords": [
+    "slackapi"
+  ],
+  "author": "Slack Technologies",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/slackapi/tasks-app/issues"
+  },
+  "homepage": "https://github.com/slackapi/tasks-app#readme",
   "dependencies": {
     "@slack/bolt": "^3.8.1",
     "dotenv": "^10.0.0",
@@ -17,6 +33,7 @@
     "nodemon": "^2.0.12",
     "pluralize": "^8.0.0",
     "slack-block-builder": "^2.1.1"
+
   },
   "devDependencies": {
     "eslint": "^7.32.0",
@@ -24,5 +41,6 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.24.2",
     "jest": "^27.2.0"
+
   }
 }
